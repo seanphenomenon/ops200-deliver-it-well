@@ -7,34 +7,51 @@ const expect = chai.expect;
 
 server.listen(4444);
 
-describe('server/app.js', function() {
-  this.timeout(5000);
-  beforeEach((done) => {
-    
-    done();
-  });
+describe('server/app.js', function () {
+    this.timeout(5000);
+    beforeEach((done) => {
 
-  afterEach((done) => {
-      done();
-  })
-
-  it('responds to /', (done) => {
-    chai.request(server)
-      .get('/')
-      .end((err, res) => {
-        expect(err).not.exist;
-        expect(res).to.have.status(200);
         done();
-      });
-  });
-
-  it('page says hello world', (done) => {
-  chai.request(server)
-    .get('/')
-    .end((err, res) => {
-      expect(err).not.exist;
-      expect(JSON.stringify(res.text)).to.contain('Hello World');
-      done();
     });
-  });
+
+    afterEach((done) => {
+        done();
+    })
+
+    it('responds to /', (done) => {
+        chai.request(server)
+            .get('/')
+            .end((err, res) => {
+                expect(err).not.exist;
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+    it('page says hello world', (done) => {
+        chai.request(server)
+            .get('/')
+            .end((err, res) => {
+                expect(err).not.exist;
+                expect(JSON.stringify(res.text)).to.contain('Hello World');
+                done();
+            });
+    });
+
+    it('subtitle says did you wash your hands today?', (done) => {
+        chai.request(server)
+            .get('/')
+            .end((err, res) => {
+                expect(err).not.exist;
+                expect(JSON.stringify(res.text)).to.contain('did you wash your hands today?');
+                done();
+            });
+    });
+
+
+
+
+
+
+
 })
